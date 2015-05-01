@@ -1,14 +1,19 @@
 package com.milhao;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 
-public class CriarConta 
+public class CriarConta extends JFrame
 {
 	private String nome;
 	private String login;
@@ -16,83 +21,150 @@ public class CriarConta
 	private int Pontuação;
 	private boolean inGame;
 	
-	private JButton btnFinalizar = null;
-	private JButton btnLimparCaixas = null;
-	private JButton btnCancelar = null;
-	
-	private JTextField jtfLogin = null;
-	private JPasswordField jpfSenha = null;
-	
-	private BancoDeDados baseJogador = null;
-	
 
+	private BancoDeDados baseJogador = null;
+	private JTextField txfNome;
+	private JTextField txfLogin;
+	private JPasswordField psfSenha;
+	
+	private JButton btnCadastrar = null;
+	private JButton btnCancelar =  null;
+	
 	public CriarConta()
 	{
 		JFrame janelaCadastroJogador = new JFrame("Cadastrar Jogador");
-		baseJogador = new BancoDeDados("BaseJogadores.txt");
+		janelaCadastroJogador.getContentPane().setBackground(Color.DARK_GRAY);
+		
+		JLabel lblCriarNovaConta = new JLabel("CRIAR NOVA CONTA");
+		lblCriarNovaConta.setForeground(Color.WHITE);
+		
+		JLabel lblNome = new JLabel("NOME");
+		lblNome.setForeground(Color.WHITE);
+		
+		txfNome = new JTextField();
+		txfNome.setColumns(10);
+		
+		JLabel lblLogin = new JLabel("LOGIN");
+		lblLogin.setForeground(Color.WHITE);
+		
+		txfLogin = new JTextField();
+		txfLogin.setColumns(10);
+		
+		JLabel lblSenha = new JLabel("SENHA");
+		lblSenha.setForeground(Color.WHITE);
+		
+		psfSenha = new JPasswordField();
+		
+		configureButtons();
+		eventButtons();
+		
+		
 		
 		GroupLayout groupLayout = new GroupLayout(janelaCadastroJogador.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 434, Short.MAX_VALUE)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(23)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblSenha)
+								.addComponent(lblNome)
+								.addComponent(lblLogin))
+							.addGap(18)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+								.addComponent(psfSenha)
+								.addComponent(txfLogin)
+								.addComponent(txfNome, GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(108)
+							.addComponent(lblCriarNovaConta))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(btnCadastrar)
+							.addGap(140)
+							.addComponent(btnCancelar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 262, Short.MAX_VALUE)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(lblCriarNovaConta)
+					.addGap(18)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblNome)
+						.addComponent(txfNome, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblLogin)
+						.addComponent(txfLogin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(26)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblSenha)
+						.addComponent(psfSenha, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnCadastrar)
+						.addComponent(btnCancelar))
+					.addContainerGap())
 		);
+		
 		janelaCadastroJogador.getContentPane().setLayout(groupLayout);
+		baseJogador = new BancoDeDados("BaseJogadores.txt");
 		
 		
-	}
-
+	}//End Construtor
 	
-	public boolean inserirJogador(  String nome, String senha, String login)
+	/**
+	 * Configura os botoes
+	 */
+	public void configureButtons()
 	{
-		this.senha = senha;
-		this.nome = nome;
-		this.login = login;	
-		//Concatena todo mundo e escreve no arquivo
-		String textoGrande = nome+login+senha;
-		baseJogador.writeArchiveString(textoGrande);
-		return true;		
+		btnCancelar = new JButton("Cancelar");
+		btnCadastrar = new JButton("Cadastrar");	
 	}
 	
-	public boolean pesquisarJogador()
+	/**
+	 * Trata evento dos botoes
+	 * btnCadastrar
+	 * btnCancelar
+	 */
+	public void eventButtons()
 	{
-		return true;
-	}
+		btnCancelar.addActionListener(new ActionListener() 
+		{
+			
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				dispose();
+				
+			}
+		});
 		
-	public String getNome() {
-		return nome;
+		btnCadastrar.addActionListener(new ActionListener() 
+		{
+			
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				//Escrever em disco os dados do jogador
+				
+			}
+		});
 	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
+	/**
+	 * Seta as configurações
+	 * para a criação da janela como
+	 * evento em um botao de outra tela
+	 */
+	public void cadastrar()
+	{
+		setVisible(true);
+		setSize(340, 265);
+		setResizable(false);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-
-	public int getPontuação() {
-		return Pontuação;
-	}
-
-	public void setPontuação(int pontuação) {
-		Pontuação = pontuação;
-	}
-
-	public boolean isInGame() {
-		return inGame;
-	}
-
-	public void setInGame(boolean inGame) {
-		this.inGame = inGame;
-	}
-
 	
 }

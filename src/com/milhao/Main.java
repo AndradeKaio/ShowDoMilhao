@@ -6,7 +6,7 @@ public class Main {
 
 	public static void main(String[] args) 
 	{
-	 MenuPrincipal teste = new MenuPrincipal();
+	 Login teste = new Login();
 	 teste.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	 teste.setSize(600,400);
 	 teste.setResizable(false);

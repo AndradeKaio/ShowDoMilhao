@@ -12,7 +12,7 @@ public class Principal
 	
 	public static void menuPrincipal()
 	{
-		MenuPrincipal menu = new MenuPrincipal();
+		Login menu = new Login();
 		menu.setVisible(true);
 		menu.setSize(349,248);
 		menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -20,7 +20,11 @@ public class Principal
 		menu.setResizable(false);
 		
 	}
-	
+	public static void criarConta()//teste
+	{
+		CriarConta acc = new CriarConta();
+		acc.cadastrar();
+	}
 	public static void perguntas()
 	{
 		Perguntas jp = new Perguntas();
@@ -33,7 +37,8 @@ public class Principal
 	
 	public static void main(String[] args) throws IOException 
 	{
-		menuPrincipal();
+		//menuPrincipal();
+		criarConta();
 			
 	}
 
