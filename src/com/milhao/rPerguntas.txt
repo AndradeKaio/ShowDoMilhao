@@ -1,0 +1,20 @@
+Kaio
+2
+2000
+
+F - 1000
+M - 2000
+D - 5000
+D - 10000
+
+
+
+
+1
+0*Quem foi Roberto Carlos?#A)Um Cantor%B)Um Pintor%C) Um Salvador%D) Um Pedreiro+NF|
+1*Quem foi Roberto Carlos?#A) Um Cantor%B) Um Pintor%C) Um Salvador %D) Um Pedreiro+ND|
+2Quem foi Roberto Carlos?#A) Um Cantor%B) Um Pintor%C) Um Salvador %D) Um Pedreiro+ND|
+3Quem foi Roberto Carlos?#A) Um Cantor%B) Um Pintor%C) Um Salvador %D) Um Pedreiro+ND|
+4Quem foi Roberto Carlos?#A) Um Cantor%B) Um Pintor%C) Um Salvador %D) Um Pedreiro+ND|
+5Quem foi Roberto Carlos?#A) Um Cantor%B) Um Pintor%C) Um Salvador %D) Um Pedreiro+ND|
+6Quem foi Roberto Carlos?#A) Um Cantor%B) Um Pintor%C) Um Salvador %D) Um Pedreiro+ND|
