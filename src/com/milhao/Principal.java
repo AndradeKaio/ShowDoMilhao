@@ -23,6 +23,10 @@ public class Principal
 	public static void criarConta()//teste
 	{
 		CriarConta acc = new CriarConta();
+		acc.setVisible(true);
+		//acc.setSize(370, 300);
+		//acc.setResizable(false);
+		acc.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		acc.cadastrar();
 	}
 	public static void perguntas()
@@ -33,12 +37,14 @@ public class Principal
 		jp.setResizable(false);
 		jp.setLocation(500, 250);
 		jp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 	}
 	
 	public static void main(String[] args) throws IOException 
 	{
 		//menuPrincipal();
-		criarConta();
+		//criarConta();
+		perguntas();
 			
 	}
 

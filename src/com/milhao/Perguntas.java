@@ -5,16 +5,16 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JList;
-import javax.swing.JCheckBox;
 
 public class Perguntas extends JFrame 
 {
@@ -27,36 +27,30 @@ public class Perguntas extends JFrame
 	private String pergunta;		//pergunta da janela
 	private String altA, altB, altC, altD; 								
 	
-	private short esq, dir;
+	
 	private short codigo; 
-	private boolean lapide;
-	private double nivel = 1000.0;
-	private String texto;
+	private char lapide;   //5000 < pergunta medio //10000 < pergunta dificil
+	private String texto;           
+	private double dinheiro;
+	
 	
 	JCheckBox nivelFacil;
 	JCheckBox nivelMedio;
 	JCheckBox nivelDificil;
 	
-	BancoDeDados cadastroBase = null;
+	BancoDeDados cadastroBase, wPerguntasFacil, wPerguntasMedio, wPerguntasDificil = null;
 	
 	private JCheckBox altAcorreta;
 	private JCheckBox altBcorreta;
 	private JCheckBox altCcorreta;
 	private JCheckBox altDcorreta;
+	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private final ButtonGroup buttonGroup_1 = new ButtonGroup();
 	
 	
 	
 	public Perguntas()
 	{
-				
-		try
-		{
-			cadastroBase = new BancoDeDados("Perguntas.txt");	
-		}
-		catch( Exception e)
-		{
-			e.printStackTrace();		
-		}
 		
 		getContentPane().setBackground(Color.DARK_GRAY);
 		
@@ -133,28 +127,35 @@ public class Perguntas extends JFrame
 		});
 		
 		nivelFacil = new JCheckBox("F\u00E1cil");
+		buttonGroup_1.add(nivelFacil);
 		nivelFacil.setBackground(Color.DARK_GRAY);
 		nivelFacil.setForeground(Color.WHITE);
 		
 		nivelMedio = new JCheckBox("M\u00E9dio");
+		buttonGroup_1.add(nivelMedio);
 		nivelMedio.setBackground(Color.DARK_GRAY);
 		nivelMedio.setForeground(Color.WHITE);
 		
 		nivelDificil = new JCheckBox("Dif\u00EDcil");
+		buttonGroup_1.add(nivelDificil);
 		nivelDificil.setForeground(Color.WHITE);
 		nivelDificil.setBackground(Color.DARK_GRAY);
 		
 		altAcorreta = new JCheckBox("");
+		buttonGroup.add(altAcorreta);
 		altAcorreta.setBackground(Color.DARK_GRAY);
 		altAcorreta.setForeground(Color.DARK_GRAY);
 		
 		altBcorreta = new JCheckBox("");
+		buttonGroup.add(altBcorreta);
 		altBcorreta.setBackground(Color.DARK_GRAY);
 		
 		altCcorreta = new JCheckBox("");
+		buttonGroup.add(altCcorreta);
 		altCcorreta.setBackground(Color.DARK_GRAY);
 		
 		altDcorreta = new JCheckBox("");
+		buttonGroup.add(altDcorreta);
 		altDcorreta.setBackground(Color.DARK_GRAY);
 		
 
@@ -264,54 +265,67 @@ public class Perguntas extends JFrame
 		return retorno;
 	}
 	
+	public char getLapide()
+	{
+		return this.lapide;
+	}
 	public void setLapide(boolean situacao)
 	{
-		this.lapide = situacao;
-	}
-	
-	public char getLapide( )
-	{
-		char fim = ' ';
-		if(this.lapide)
+		if( situacao )
 		{
-			fim = '*';
-		}		
-		return fim;
+			this.lapide = '*';
+		}
+		else
+		{
+			this.lapide = ' ';
+		}
 	}
-	
 
-	public double getNivel()
+
+	public BancoDeDados selectNivelPerguntas()
 	{
 		if( nivelFacil.isSelected() )
 		{
-			this.nivel = 10000;
+			return wPerguntasFacil = new BancoDeDados("nivelFacil.txt");
 		}
 		else if( nivelMedio.isSelected())
 		{
-			this.nivel = nivel*2;
+			return wPerguntasMedio = new BancoDeDados("nivelMedio.txt");
 		}
 		else if( nivelDificil.isSelected())
 		{
-			this.nivel = nivel*3;
+			return wPerguntasDificil = new BancoDeDados("nivelDificil.txt");
 		}
-		return this.nivel;
+		
+		return null;
 	}
-	
+	public String alternativaCorreta()
+	{
+		if( altAcorreta.isSelected())
+		{
+			
+		}
+		return "";
+	}
 	public void cadastrarPergunta( )
 	{
 			
 		//iniciaVetor();
-		int random = (int)(Math.random()*127);
-		double nivelAtual = getNivel();
-		String pergunta = ""+ random;
-		pergunta += getLapide();
-		pergunta += getTexto();
-		pergunta = altA;
-		System.out.println(pergunta);
-		pergunta += "#A)"+ altA+"#B)"+ altB+ "#C)"+altC+"#D)"+altD+"+"+nivelAtual;
 		
-		cadastroBase.writeArchiveString(pergunta);
-		cadastroBase.close();
+		
+		BancoDeDados corrent = null;
+		corrent = selectNivelPerguntas();
+		
+		String pergunta ="";
+		setLapide(false);
+		
+		pergunta += getLapide();
+		pergunta += txfPergunta.getText(); 
+		
+		pergunta += "#A)"+ altA+"#B)"+ altB+ "#C)"+altC+"#D)"+altD;
+		
+		corrent.writeArchiveString(pergunta);
+		corrent.close();
 	}
 	
 	

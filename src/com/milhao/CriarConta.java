@@ -3,6 +3,7 @@ package com.milhao;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
@@ -27,8 +28,9 @@ public class CriarConta extends JFrame
 	private JTextField txfLogin;
 	private JPasswordField psfSenha;
 	
-	private JButton btnCadastrar = null;
-	private JButton btnCancelar =  null;
+	
+	private JButton btnCadastrar_1 = null;	
+	private JButton btnCancelar_1 = null;
 	
 	public CriarConta()
 	{
@@ -81,9 +83,9 @@ public class CriarConta extends JFrame
 							.addComponent(lblCriarNovaConta))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addContainerGap()
-							.addComponent(btnCadastrar)
-							.addGap(140)
-							.addComponent(btnCancelar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+							.addComponent(btnCadastrar_1)
+							.addGap(172)
+							.addComponent(btnCancelar_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
 					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
@@ -105,8 +107,8 @@ public class CriarConta extends JFrame
 						.addComponent(psfSenha, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnCadastrar)
-						.addComponent(btnCancelar))
+						.addComponent(btnCadastrar_1)
+						.addComponent(btnCancelar_1))
 					.addContainerGap())
 		);
 		
@@ -121,8 +123,9 @@ public class CriarConta extends JFrame
 	 */
 	public void configureButtons()
 	{
-		btnCancelar = new JButton("Cancelar");
-		btnCadastrar = new JButton("Cadastrar");	
+		btnCancelar_1 = new JButton("Cancelar");
+		
+		btnCadastrar_1 = new JButton("Cadastrar");	
 	}
 	
 	/**
@@ -132,7 +135,7 @@ public class CriarConta extends JFrame
 	 */
 	public void eventButtons()
 	{
-		btnCancelar.addActionListener(new ActionListener() 
+		btnCancelar_1.addActionListener(new ActionListener() 
 		{
 			
 			@Override
@@ -143,7 +146,7 @@ public class CriarConta extends JFrame
 			}
 		});
 		
-		btnCadastrar.addActionListener(new ActionListener() 
+		btnCadastrar_1.addActionListener(new ActionListener() 
 		{
 			
 			@Override
@@ -161,10 +164,7 @@ public class CriarConta extends JFrame
 	 */
 	public void cadastrar()
 	{
-		setVisible(true);
-		setSize(340, 265);
-		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 	}
 	
 }

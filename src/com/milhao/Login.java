@@ -32,6 +32,8 @@ public class Login extends JFrame
 		private JButton btnConectar_1;
 		private JButton btnSair = null;
 		private JButton btnSair_1;
+		private JLabel lblLogin;
+		private JLabel lblSenha;
 		/**
 		 * Tratamento de evento
 		 * para os Buttons
@@ -108,13 +110,23 @@ public class Login extends JFrame
 			
 			JLabel lblShowDoMilho = new JLabel("Show Do Milh\u00E3o");
 			lblShowDoMilho.setForeground(Color.WHITE);
+			
+			lblLogin = new JLabel("LOGIN");
+			lblLogin.setForeground(Color.WHITE);
+			
+			lblSenha = new JLabel("SENHA");
+			lblSenha.setForeground(Color.WHITE);
 			GroupLayout groupLayout = new GroupLayout(getContentPane());
 			groupLayout.setHorizontalGroup(
 				groupLayout.createParallelGroup(Alignment.LEADING)
 					.addGroup(groupLayout.createSequentialGroup()
 						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 							.addGroup(groupLayout.createSequentialGroup()
-								.addGap(103)
+								.addGap(39)
+								.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+									.addComponent(lblLogin)
+									.addComponent(lblSenha))
+								.addGap(18)
 								.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
 									.addComponent(textField, Alignment.LEADING)
 									.addComponent(textField_1, Alignment.LEADING)
@@ -125,7 +137,7 @@ public class Login extends JFrame
 							.addGroup(groupLayout.createSequentialGroup()
 								.addContainerGap()
 								.addComponent(btnCriarConta_1)
-								.addPreferredGap(ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
+								.addPreferredGap(ComponentPlacement.RELATED, 225, Short.MAX_VALUE)
 								.addComponent(btnSair_1, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE)))
 						.addContainerGap())
 			);
@@ -135,16 +147,20 @@ public class Login extends JFrame
 						.addGap(27)
 						.addComponent(lblShowDoMilho)
 						.addPreferredGap(ComponentPlacement.UNRELATED)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+							.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(lblLogin))
 						.addPreferredGap(ComponentPlacement.UNRELATED)
-						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+							.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(lblSenha))
 						.addGap(18)
 						.addComponent(btnConectar_1)
 						.addGap(18)
 						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 							.addComponent(btnCriarConta_1)
 							.addComponent(btnSair_1))
-						.addContainerGap(25, Short.MAX_VALUE))
+						.addContainerGap(76, Short.MAX_VALUE))
 			);
 			getContentPane().setLayout(groupLayout);
 		}

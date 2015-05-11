@@ -20,7 +20,8 @@ public class BancoDeDados
 	{
 		try
 		{				 
-			randomArchive = new RandomAccessFile(str, "rw");			
+			randomArchive = new RandomAccessFile(str, "rw");
+			
 		}
 		catch(FileNotFoundException e)
 		{
@@ -38,8 +39,7 @@ public class BancoDeDados
 	{
 		try
 		{
-			long x = randomArchive.length();
-			randomArchive.seek(x);
+			
 			randomArchive.writeUTF(str+"\r\n");
 			
 		}
